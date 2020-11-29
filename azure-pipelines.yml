@@ -3,13 +3,13 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- master
+- main
 
 resources:
 - repo: self
 
-variables:
-  tag: '$(Build.BuildId)'
+#variables:
+  #tag: '$(Build.BuildId)'
 
 stages:
 - stage: Build
@@ -22,8 +22,8 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-        containerRegistry: 'Binarythistle Docker Hub'
-        repository: 'binarythistle/weatherapi'
+        containerRegistry: 'ADO Docker Hub'
+        repository: 'kaushikarvind/weatherapi'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: |
@@ -50,4 +50,4 @@ stages:
         ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
         ARM_TENANT_ID: $(ARM_TENANT_ID)
         ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
-        TF_VAR_imagebuild: $(tag)
+        #TF_VAR_imagebuild: $(tag)
