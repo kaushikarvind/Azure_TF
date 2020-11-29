@@ -1,4 +1,4 @@
-# Docker 
+# Docker
 # Build a Docker image 
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -8,8 +8,8 @@ trigger:
 resources:
 - repo: self
 
-#variables:
-  #tag: '$(Build.BuildId)'
+variables:
+  tag: '$(Build.BuildId)'
 
 stages:
 - stage: Build
@@ -26,8 +26,8 @@ stages:
         repository: 'kaushikarvind/weatherapi'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-        #tags: |
-          #$(tag)
+        tags: |
+          $(tag)
 - stage: Provision
   displayName: 'Terraforming on Azure...'
   dependsOn: Build
@@ -50,4 +50,4 @@ stages:
         ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
         ARM_TENANT_ID: $(ARM_TENANT_ID)
         ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
-        #TF_VAR_imagebuild: $(tag)
+        TF_VAR_imagebuild: $(tag)
