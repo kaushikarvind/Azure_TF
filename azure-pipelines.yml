@@ -18,7 +18,8 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: 'ubuntu-latest'
+      #vmImage: 'ubuntu-latest'
+      vmImage: 'CentOS-8'
     steps:
     - task: Docker@2
       inputs:
@@ -35,12 +36,14 @@ stages:
   - job: Provision
     displayName: 'Provisioning Container Instance'
     pool:
-      vmImage: 'ubuntu-latest'
+      #vmImage: 'ubuntu-latest'
+      vmImage: 'MB_dec20'
     variables: 
     - group: TerraformEnvVars
     steps:
     - script: |
         set -e
+        
         terraform init -input=false
         terraform apply -input=false -auto-approve
       name: 'RunTerraform'

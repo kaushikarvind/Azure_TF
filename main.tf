@@ -3,6 +3,7 @@ provider "azurerm" {
     features {}
 }
 # creating persitance storage for terraform state files ** make sure these resources are present in Azure beforehand
+# remote state can also be created in the same resoruce group
 terraform {
     backend "azurerm" {
         resource_group_name  = "tf_rg_blobstore"
