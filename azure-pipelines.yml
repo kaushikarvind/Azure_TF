@@ -26,8 +26,8 @@ stages:
         repository: 'kaushikarvind/weatherapi'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-        tags: |
-          $(tag)
+        #tags: |
+          #$(tag)
 - stage: Provision
   displayName: 'Terraforming on Azure...'
   dependsOn: Build
